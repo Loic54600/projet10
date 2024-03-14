@@ -13,3 +13,13 @@ L'application est le site d'une agence evenementielle.
 
 ## Tests
 - `yarn test`
+
+
+<!--
+
+Dans containers/form/index.js 
+    // Récupération de onSucces pour afficher la confirmation du message envoyé
+          onSuccess();
+
+
+-->
