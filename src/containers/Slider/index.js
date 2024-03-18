@@ -7,29 +7,34 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
+
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+    /* changement de l'icone "<" pour trier dans le bon ordre  */
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      /* ajout de l'élément +1 a index ainsi que "?" a "byDateDesc" */
+      () => setIndex(index + 1 < byDateDesc?.length ? index + 1 : 0),
       5000
     );
   };
   useEffect(() => {
     nextCard();
   });
+
   return (
     <div className="SlideCardList">
+      {/* Suppresion des <></> */}
       {byDateDesc?.map((event, idx) => (
-        <>
+        // Changement de la key pour qu'elle soit unique pour chaque slide "event.title" => "event.date"
+        <div key={event.date}>
           <div
-            key={event.title}
-            className={`SlideCard SlideCard--${
-              index === idx ? "display" : "hide"
-            }`}
+            className={`SlideCard SlideCard--${index === idx ? "display" : "hide"
+              }`}
           >
-            <img src={event.cover} alt="forum" />
+            {/* Ajout de l'attribut alt avec renseignement de l'image "alt="forum"" => "alt={event.title}"  */}
+            <img src={event.cover} alt={event.title} />
             <div className="SlideCard__descriptionContainer">
               <div className="SlideCard__description">
                 <h3>{event.title}</h3>
@@ -42,15 +47,19 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  // Changement de la key pour qu'elle corresponde à la slide en cours " key={`${event.id}`}" => "key={_.date}"
+                  key={_.date}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  // Remplacement de idx par index pour indiquer sur quelle image on se trouve "checked={idx === radioIdx} => "checked={index === radioIdx}"*/
+                  checked={index === radioIdx}
+                  // Ajout de readOnly pour retirer erreur console
+                  readOnly
                 />
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
