@@ -13,7 +13,13 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { last } = useData()
+  // Changement de variable "const { last } = useData()" 
+  const { data } = useData()
+  // Création de la variable last pour la récupération des dates pour les prestation
+  const last = data?.events.sort((eventA, eventB) =>
+    new Date(eventB.date) - new Date(eventA.date)
+  )[0];
+
   return <>
     <header>
       <Menu />
@@ -115,14 +121,15 @@ const Page = () => {
     </main>
     <footer className="row">
       <div className="col presta">
-        <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
-          small
-          label="boom"
+        <h3>Notre dernière prestation</h3>
+        {last &&(
+          <EventCard
+            imageSrc={last?.cover}
+            title={last?.title}
+            date={new Date(last?.date)}
+            label={last?.type}
         />
+        )} 
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
@@ -130,16 +137,17 @@ const Page = () => {
         <div>01 23 45 67 89</div>
         <div>contact@724events.com</div>
         <div>
-          <a href="#twitch">
+        {/* Rajout des liens réseaux sociaux */}
+          <a href="https://www.twitch.tv/" target="blank">
             <Icon name="twitch" />
           </a>
-          <a href="#facebook">
+          <a href="https://www.facebook.com/?locale=fr_FR" target="blank">
             <Icon name="facebook" />
           </a>
-          <a href="#twitter">
+          <a href="https://twitter.com/" target="blank">
             <Icon name="twitter" />
           </a>
-          <a href="#youtube">
+          <a href="https://www.youtube.com/" target="blank">
             <Icon name="youtube" />
           </a>
         </div>
