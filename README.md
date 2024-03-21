@@ -72,8 +72,11 @@ Dans helpers/date/index.js
     - Rajout +1 au tableau car 0 n'existe pas début a 1
 
 Dans components/icon/index.test.js
-    - partie facebook a completer, exemple sur twitch.
-    
+    - partie facebook a completer, exemple sur twitch. 
+    - création de "FBicon"
+    - Rajout des modifications dans components/icon/index.js
+    - data-testid="FBicon"
+
 Dans components/logo/index.js
     - On retravaille le code "<text>" pour erreur console
       <text fill="url(#paint5_linear_56_57)" 
@@ -89,5 +92,8 @@ Dans components/logo/index.js
         whitespace: 'pre'
        }} 
 
-       
+ Dans containers/events/index.test.js
+    - erreur yarn "expect(await screen.queryByText("Forum #productCON")).not.toBeInTheDocument();"
+    - modification "expect(await screen.queryByText("Forum #productCON")).toBeInTheDocument();"
+
 -->
