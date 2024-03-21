@@ -35,7 +35,6 @@ Dans containers/slider/index.js
     - Changement de la key pour qu'elle corresponde à la slide en cours " key={`${event.id}`}" => "key={_.date}".
     - Remplacement de idx par index pour indiquer sur quelle image on se trouve "checked={idx === radioIdx} => "checked={index === radioIdx}".
     - Ajout de readOnly pour retirer erreur console
-    -Ajout de readOnly pour retirer erreur console
 
 Dans pages/home/index.js
     - Changement de variable "const { last } = useData()"
@@ -52,8 +51,43 @@ Dans pages/home/index.js
     - Rajout des liens réseaux sociaux
     - rajout de "target="blank" qui permet l'ouverture d'une nouvelle fenetre
 
+Dans pages/home/index.test.js
+    -"timeout" délai d'expiration de 2000ms dépassé = erreur asynchrone
 
 Dans containers/form/index.js 
     - Récupération de onSucces pour afficher la confirmation du message envoyé
           onSuccess();
+
+Dans containers/form/index.test.js  
+    - yarn test —watch
+    - Modification:
+       at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:187:27)
+      at findByText (node_modules/@testing-library/dom/dist/query-helpers.js:101:33)
+      at Object.<anonymous> (src/containers/Form/index.test.js:25:20) 
+
+    - Rajout de waitFor  dans l'import "  ReferenceError: waitFor is not defined "
+    -"timeout" délai d'expiration de 2000ms dépassé = erreur asynchrone
+
+Dans helpers/date/index.js
+    - Rajout +1 au tableau car 0 n'existe pas début a 1
+
+Dans components/icon/index.test.js
+    - partie facebook a completer, exemple sur twitch.
+    
+Dans components/logo/index.js
+    - On retravaille le code "<text>" pour erreur console
+      <text fill="url(#paint5_linear_56_57)" 
+      style={{ 'font-family': 'Kalimati', 'font-size': '39px', 'font-weight': 700, 'white-space': 'pre' }} 
+      x="-1.125" y="44.995">724
+      </text>
+
+      pour avoir
+            style={{ 
+        fontfamily: 'Kalimati', 
+        fontsize: 40, 
+        fontweight: 700, 
+        whitespace: 'pre'
+       }} 
+
+       
 -->

@@ -16,7 +16,7 @@ const Slider = () => {
     setTimeout(
       /* ajout de l'élément +1 a index ainsi que "?" a "byDateDesc" */
       () => setIndex(index + 1 < byDateDesc?.length ? index + 1 : 0),
-      5000
+      2000
     );
   };
   useEffect(() => {
